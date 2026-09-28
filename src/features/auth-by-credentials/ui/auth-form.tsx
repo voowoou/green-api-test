@@ -10,9 +10,9 @@ export const AuthForm = () => {
   };
 
   return (
-    <Form<AuthCredentials> layout="vertical" onFinish={handleFinish}>
+    <Form<AuthCredentials> className="auth-form" layout="vertical" onFinish={handleFinish}>
       <Form.Item<AuthCredentials>
-        label="ID"
+        label="ID instance"
         name="idInstance"
         rules={[{ required: true, message: "Введите ID" }]}
       >
@@ -25,8 +25,8 @@ export const AuthForm = () => {
       >
         <Input.Password autoComplete="current-password" placeholder="Токен API" />
       </Form.Item>
-      <Button block htmlType="submit" type="primary">
-        Продолжить
+      <Button block className="auth-form__submit" htmlType="submit" type="primary">
+        Открыть чаты
       </Button>
     </Form>
   );

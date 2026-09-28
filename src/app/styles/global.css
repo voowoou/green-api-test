@@ -40,6 +40,66 @@ body {
   background: #f5f8fc;
 }
 
+.auth-page,
+.page-loader {
+  display: flex;
+  min-height: 100dvh;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 20% 15%, #dff1ff 0, transparent 32%),
+    radial-gradient(circle at 82% 88%, #d7edff 0, transparent 30%), #f5f8fc;
+}
+
+.auth-page {
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-card {
+  width: min(100%, 420px);
+  padding: 36px;
+  background: rgb(255 255 255 / 92%);
+  border: 1px solid #e5ebf3;
+  border-radius: 24px;
+  box-shadow: 0 20px 55px rgb(39 83 120 / 12%);
+}
+
+.auth-card__icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 20px;
+  color: #1687e8;
+  background: #e7f3ff;
+  border-radius: 16px;
+  place-items: center;
+  font-size: 22px;
+}
+
+.auth-card__title.ant-typography {
+  margin: 0 0 8px;
+  font-size: 26px;
+}
+
+.auth-card__description.ant-typography {
+  margin-bottom: 28px;
+  line-height: 1.55;
+}
+
+.auth-form .ant-form-item {
+  margin-bottom: 18px;
+}
+
+.auth-form .ant-form-item-label > label {
+  color: #46536a;
+  font-weight: 600;
+}
+
+.auth-form__submit {
+  height: 44px;
+  margin-top: 4px;
+}
+
 .messenger-sidebar,
 .chat-window {
   height: 100%;
@@ -340,6 +400,16 @@ body {
 }
 
 @media (max-width: 575px) {
+  .auth-page,
+  .page-loader {
+    padding: 16px;
+  }
+
+  .auth-card {
+    padding: 28px 22px;
+    border-radius: 20px;
+  }
+
   .messenger-sidebar {
     padding: 12px 8px 8px;
   }

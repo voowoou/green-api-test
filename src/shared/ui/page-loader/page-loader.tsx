@@ -1,7 +1,7 @@
 import { Flex, Spin } from "antd";
 
 export const PageLoader = () => (
-  <Flex align="center" justify="center" style={{ minHeight: "100vh" }}>
+  <Flex align="center" className="page-loader" justify="center">
     <Spin size="large" />
   </Flex>
 );
