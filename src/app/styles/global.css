@@ -322,17 +322,17 @@ body {
 .message-composer__form {
   display: flex;
   gap: 10px;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .message-composer__input-shell {
   display: flex;
   flex: 1;
-  gap: 4px;
-  align-items: flex-end;
+  gap: 6px;
+  align-items: center;
   min-width: 0;
   min-height: 46px;
-  padding: 4px 6px;
+  padding: 5px 8px;
   background: #f5f8fc;
   border: 1px solid #e5ebf3;
   border-radius: 23px;
@@ -353,24 +353,31 @@ body {
 }
 
 .message-composer__input-shell .ant-input {
-  padding: 8px 0;
+  min-height: 34px;
+  padding: 6px 0;
   background: transparent;
+  border: 0;
+  box-shadow: none;
   resize: none;
 }
 
 .message-composer__input-shell .ant-input:focus {
+  border-color: transparent;
   box-shadow: none;
 }
 
 .message-composer__input-shell .ant-btn {
   flex: none;
+  width: 34px;
+  height: 34px;
+  padding-inline: 0;
   color: #748094;
 }
 
 .message-composer__send {
   flex: none;
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
 }
 
 .chat-card__name {

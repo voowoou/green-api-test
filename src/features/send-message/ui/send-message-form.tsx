@@ -1,6 +1,6 @@
 import { PaperClipOutlined, SendOutlined, SmileOutlined } from "@ant-design/icons";
-import { App, Button, Form, Input } from "antd";
-import { useState } from "react";
+import { App, Button, Input } from "antd";
+import { type FormEvent, useState } from "react";
 
 import { useChatStore } from "@/entities/chat";
 import { useMessageStore } from "@/entities/message";
@@ -8,25 +8,22 @@ import { useSessionStore } from "@/entities/session";
 
 import { sendMessage } from "../api/send-message";
 
-interface SendMessageValues {
-  text: string;
-}
-
 export const SendMessageForm = () => {
-  const [form] = Form.useForm<SendMessageValues>();
+  const [draft, setDraft] = useState("");
   const [isSending, setIsSending] = useState(false);
   const { message } = App.useApp();
-  const draft = Form.useWatch("text", form) ?? "";
   const credentials = useSessionStore((state) => state.credentials);
   const activeChatId = useChatStore((state) => state.activeChatId);
   const addMessage = useMessageStore((state) => state.addMessage);
 
-  const handleFinish = async ({ text }: SendMessageValues): Promise<void> => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+    event.preventDefault();
+
     if (!credentials || !activeChatId) {
       return;
     }
 
-    const normalizedText = text.trim();
+    const normalizedText = draft.trim();
 
     if (!normalizedText) {
       return;
@@ -48,7 +45,7 @@ export const SendMessageForm = () => {
         timestamp: Date.now(),
         isOutgoing: true,
       });
-      form.resetFields();
+      setDraft("");
     } catch {
       message.error("Не удалось отправить сообщение");
     } finally {
@@ -57,20 +54,18 @@ export const SendMessageForm = () => {
   };
 
   return (
-    <Form<SendMessageValues> className="message-composer__form" form={form} onFinish={handleFinish}>
+    <form className="message-composer__form" onSubmit={handleSubmit}>
       <div className="message-composer__input-shell">
         <Button aria-label="Прикрепить файл" icon={<PaperClipOutlined />} type="text" />
-        <Form.Item<SendMessageValues>
-          className="message-composer__field"
-          name="text"
-          rules={[{ required: true, whitespace: true, message: "Напишите сообщение" }]}
-        >
+        <div className="message-composer__field">
           <Input.TextArea
             autoSize={{ minRows: 1, maxRows: 4 }}
             disabled={!credentials || !activeChatId || isSending}
+            onChange={(event) => setDraft(event.target.value)}
             placeholder="Сообщение"
+            value={draft}
           />
-        </Form.Item>
+        </div>
         <Button aria-label="Добавить эмодзи" icon={<SmileOutlined />} type="text" />
       </div>
       {draft.trim() ? (
@@ -85,6 +80,6 @@ export const SendMessageForm = () => {
           type="primary"
         />
       ) : null}
-    </Form>
+    </form>
   );
 };
