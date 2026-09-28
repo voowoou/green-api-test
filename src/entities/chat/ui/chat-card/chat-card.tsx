@@ -17,6 +17,14 @@ export const ChatCard = ({ chat, isActive, lastMessage, onSelect }: ChatCardProp
   <List.Item
     className={`chat-card${isActive ? " chat-card--active" : ""}`}
     onClick={() => onSelect(chat.chatId)}
+    onKeyDown={(event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        onSelect(chat.chatId);
+      }
+    }}
+    role="button"
+    tabIndex={0}
   >
     <Avatar className="chat-card__avatar" size={46}>
       {chat.phoneNumber.slice(-2)}

@@ -1,4 +1,5 @@
-import { Avatar, Empty, Flex, Typography } from "antd";
+import { ArrowLeftOutlined } from "@ant-design/icons";
+import { Avatar, Button, Empty, Flex, Typography } from "antd";
 import { useEffect, useRef } from "react";
 
 import { useChatStore } from "@/entities/chat";
@@ -9,6 +10,7 @@ const EMPTY_MESSAGES: readonly [] = [];
 
 export const ChatWindow = () => {
   const activeChatId = useChatStore((state) => state.activeChatId);
+  const setActiveChatId = useChatStore((state) => state.setActiveChatId);
   const activeChat = useChatStore((state) =>
     state.chats.find((chat) => chat.chatId === state.activeChatId),
   );
@@ -39,6 +41,13 @@ export const ChatWindow = () => {
   return (
     <Flex className="chat-window" vertical>
       <header className="chat-header">
+        <Button
+          aria-label="Вернуться к списку чатов"
+          className="chat-header__back"
+          icon={<ArrowLeftOutlined />}
+          onClick={() => setActiveChatId(null)}
+          type="text"
+        />
         <Avatar className="chat-header__avatar" size={42}>
           {activeChat.phoneNumber.slice(-2)}
         </Avatar>
