@@ -7,7 +7,11 @@ interface CreateChatValues {
   phoneNumber: string;
 }
 
-export const CreateChatForm = () => {
+interface CreateChatFormProps {
+  onCreated?: () => void;
+}
+
+export const CreateChatForm = ({ onCreated }: CreateChatFormProps) => {
   const addChat = useChatStore((state) => state.addChat);
 
   const handleFinish = ({ phoneNumber }: CreateChatValues): void => {
@@ -17,6 +21,7 @@ export const CreateChatForm = () => {
       chatId: formatChatId(normalizedPhoneNumber),
       phoneNumber: normalizedPhoneNumber,
     });
+    onCreated?.();
   };
 
   return (
