@@ -21,7 +21,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <Flex vertical gap="middle" style={{ height: "100%", padding: 16 }}>
+    <Flex className="messenger-sidebar" vertical gap="middle">
       <Flex align="center" justify="space-between">
         <div>
           <Typography.Text type="secondary">Ваш ID</Typography.Text>
@@ -52,7 +52,7 @@ export const Sidebar = () => {
             onSelect={setActiveChatId}
           />
         )}
-        style={{ overflowY: "auto" }}
+        className="messenger-scroll-area"
       />
     </Flex>
   );

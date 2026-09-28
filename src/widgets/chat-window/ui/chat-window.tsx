@@ -30,28 +30,28 @@ export const ChatWindow = () => {
 
   if (!activeChatId || !activeChat) {
     return (
-      <Flex align="center" justify="center" style={{ height: "100%" }}>
+      <Flex className="chat-window__empty" align="center" justify="center">
         <Empty description="Выберите чат" />
       </Flex>
     );
   }
 
   return (
-    <Flex vertical style={{ height: "100%" }}>
-      <header style={{ borderBottom: "1px solid #f0f0f0", padding: "16px 24px" }}>
+    <Flex className="chat-window" vertical>
+      <header className="messenger-header">
         <Typography.Title level={4} style={{ margin: 0 }}>
           {activeChat.phoneNumber}
         </Typography.Title>
       </header>
 
-      <Flex vertical gap="small" style={{ flex: 1, overflowY: "auto", padding: 24 }}>
+      <Flex className="messenger-scroll-area chat-window__messages" vertical gap="small">
         {messages.map((message) => (
           <MessageBubble key={message.id} message={message} />
         ))}
         <div ref={messagesEndReference} />
       </Flex>
 
-      <footer style={{ borderTop: "1px solid #f0f0f0", padding: 16 }}>
+      <footer className="messenger-composer">
         <SendMessageForm />
       </footer>
     </Flex>

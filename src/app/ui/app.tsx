@@ -15,8 +15,19 @@ export const App = () => {
       theme={{
         algorithm: theme.defaultAlgorithm,
         token: {
-          borderRadius: 10,
-          colorPrimary: "#1677ff",
+          borderRadius: 14,
+          borderRadiusLG: 18,
+          colorPrimary: "#1687e8",
+          colorInfo: "#1687e8",
+          colorBgBase: "#f5f8fc",
+          colorBgContainer: "#ffffff",
+          colorBgElevated: "#ffffff",
+          colorBorder: "#e5ebf3",
+          colorText: "#172033",
+          colorTextSecondary: "#748094",
+          controlHeight: 40,
+          fontSize: 14,
+          wireframe: false,
         },
       }}
     >

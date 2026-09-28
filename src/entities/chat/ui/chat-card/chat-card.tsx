@@ -10,12 +10,7 @@ interface ChatCardProps {
 
 export const ChatCard = ({ chat, isActive, onSelect }: ChatCardProps) => (
   <List.Item
-    style={{
-      backgroundColor: isActive ? "#e6f4ff" : "transparent",
-      borderRadius: 8,
-      cursor: "pointer",
-      paddingInline: 12,
-    }}
+    className={`chat-card${isActive ? " chat-card--active" : ""}`}
     onClick={() => onSelect(chat.chatId)}
   >
     <Typography.Text strong={isActive}>{chat.phoneNumber}</Typography.Text>
