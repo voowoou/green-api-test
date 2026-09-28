@@ -49,10 +49,34 @@ body {
   padding: 16px 12px 12px;
 }
 
-.messenger-header {
-  padding: 18px 24px;
+.chat-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 24px;
   background: #ffffff;
   border-bottom: 1px solid #e5ebf3;
+}
+
+.chat-header__avatar {
+  color: #176eb7;
+  background: #d8ecff;
+  font-weight: 700;
+}
+
+.chat-header__details {
+  min-width: 0;
+}
+
+.chat-header__title.ant-typography {
+  margin: 0;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.chat-header__status {
+  display: block;
+  font-size: 12px;
 }
 
 .messenger-scroll-area {
@@ -68,6 +92,15 @@ body {
 
 .chat-window__messages {
   padding: 24px;
+  background-color: #eaf6ff;
+  background-image:
+    radial-gradient(circle at 18% 20%, rgb(255 255 255 / 36%) 0 2px, transparent 3px),
+    radial-gradient(circle at 82% 70%, rgb(40 152 229 / 10%) 0 1px, transparent 2px),
+    linear-gradient(135deg, rgb(255 255 255 / 28%) 25%, transparent 25%);
+  background-size:
+    34px 34px,
+    26px 26px,
+    110px 110px;
 }
 
 .messenger-composer {
@@ -185,6 +218,91 @@ body {
   white-space: nowrap;
 }
 
+.message-bubble {
+  align-self: flex-start;
+  max-width: min(75%, 620px);
+  padding: 9px 12px 7px;
+  color: #172033;
+  background: #ffffff;
+  border: 1px solid rgb(131 162 189 / 18%);
+  border-radius: 16px 16px 16px 4px;
+  box-shadow: 0 2px 8px rgb(32 73 108 / 7%);
+  overflow-wrap: anywhere;
+}
+
+.message-bubble--outgoing {
+  align-self: flex-end;
+  background: #d8f0ff;
+  border-color: transparent;
+  border-radius: 16px 16px 4px;
+}
+
+.message-bubble__text.ant-typography {
+  margin: 0 0 3px;
+  white-space: pre-wrap;
+}
+
+.message-bubble__time {
+  display: block;
+  text-align: right;
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.message-composer__form {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.message-composer__input-shell {
+  display: flex;
+  flex: 1;
+  gap: 4px;
+  align-items: flex-end;
+  min-width: 0;
+  min-height: 46px;
+  padding: 4px 6px;
+  background: #f5f8fc;
+  border: 1px solid #e5ebf3;
+  border-radius: 23px;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.message-composer__input-shell:focus-within {
+  background: #ffffff;
+  border-color: #8fc5ef;
+}
+
+.message-composer__field {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+}
+
+.message-composer__input-shell .ant-input {
+  padding: 8px 0;
+  background: transparent;
+  resize: none;
+}
+
+.message-composer__input-shell .ant-input:focus {
+  box-shadow: none;
+}
+
+.message-composer__input-shell .ant-btn {
+  flex: none;
+  color: #748094;
+}
+
+.message-composer__send {
+  flex: none;
+  width: 44px;
+  height: 44px;
+}
+
 .chat-card__name {
   padding-right: 8px;
   font-size: 13px;
@@ -226,7 +344,7 @@ body {
     padding: 12px 8px 8px;
   }
 
-  .messenger-header,
+  .chat-header,
   .messenger-composer,
   .chat-window__messages {
     padding-inline: 16px;

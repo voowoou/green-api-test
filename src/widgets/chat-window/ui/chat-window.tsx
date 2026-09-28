@@ -1,4 +1,4 @@
-import { Empty, Flex, Typography } from "antd";
+import { Avatar, Empty, Flex, Typography } from "antd";
 import { useEffect, useRef } from "react";
 
 import { useChatStore } from "@/entities/chat";
@@ -38,10 +38,18 @@ export const ChatWindow = () => {
 
   return (
     <Flex className="chat-window" vertical>
-      <header className="messenger-header">
-        <Typography.Title level={4} style={{ margin: 0 }}>
-          {activeChat.phoneNumber}
-        </Typography.Title>
+      <header className="chat-header">
+        <Avatar className="chat-header__avatar" size={42}>
+          {activeChat.phoneNumber.slice(-2)}
+        </Avatar>
+        <div className="chat-header__details">
+          <Typography.Title className="chat-header__title" level={4}>
+            +{activeChat.phoneNumber}
+          </Typography.Title>
+          <Typography.Text className="chat-header__status" type="secondary">
+            Чат GREEN-API
+          </Typography.Text>
+        </div>
       </header>
 
       <Flex className="messenger-scroll-area chat-window__messages" vertical gap="small">
