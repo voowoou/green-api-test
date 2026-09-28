@@ -1,4 +1,4 @@
-import { message as antMessage, Button, Form, Input } from "antd";
+import { App, Button, Form, Input } from "antd";
 import { useState } from "react";
 
 import { useChatStore } from "@/entities/chat";
@@ -14,6 +14,7 @@ interface SendMessageValues {
 export const SendMessageForm = () => {
   const [form] = Form.useForm<SendMessageValues>();
   const [isSending, setIsSending] = useState(false);
+  const { message } = App.useApp();
   const credentials = useSessionStore((state) => state.credentials);
   const activeChatId = useChatStore((state) => state.activeChatId);
   const addMessage = useMessageStore((state) => state.addMessage);
@@ -47,7 +48,7 @@ export const SendMessageForm = () => {
       });
       form.resetFields();
     } catch {
-      antMessage.error("Не удалось отправить сообщение");
+      message.error("Не удалось отправить сообщение");
     } finally {
       setIsSending(false);
     }

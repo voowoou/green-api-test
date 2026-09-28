@@ -1,11 +1,18 @@
-import { Layout } from "antd";
+import { App, Layout } from "antd";
+import { useCallback } from "react";
 
 import { usePollingLoop } from "@/features/poll-notifications";
 import { ChatWindow } from "@/widgets/chat-window";
 import { Sidebar } from "@/widgets/sidebar";
 
 export const MainPage = () => {
-  usePollingLoop();
+  const { message } = App.useApp();
+  const showPollingError = useCallback(
+    () => message.error("Не удалось получить сообщения"),
+    [message],
+  );
+
+  usePollingLoop({ onError: showPollingError });
 
   return (
     <Layout className="app-shell">

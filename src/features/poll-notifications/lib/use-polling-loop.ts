@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import { useChatStore } from "@/entities/chat";
 import { useMessageStore } from "@/entities/message";
@@ -20,6 +20,10 @@ interface IncomingTextMessage {
   sender: string;
   text: string;
   timestamp: number;
+}
+
+export interface PollingLoopOptions {
+  onError?: () => void;
 }
 
 const isIncomingMessageWebhook = (
@@ -69,10 +73,11 @@ export const extractIncomingTextMessage = (
   };
 };
 
-export const usePollingLoop = (): void => {
+export const usePollingLoop = ({ onError }: PollingLoopOptions = {}): void => {
   const credentials = useSessionStore((state) => state.credentials);
   const addChat = useChatStore((state) => state.addChat);
   const addMessage = useMessageStore((state) => state.addMessage);
+  const errorWasShownReference = useRef(false);
 
   useEffect(() => {
     if (!credentials) {
@@ -87,6 +92,7 @@ export const usePollingLoop = (): void => {
           const notification = await receiveNotification(credentials, controller.signal);
 
           if (!notification) {
+            errorWasShownReference.current = false;
             continue;
           }
 
@@ -107,8 +113,14 @@ export const usePollingLoop = (): void => {
           }
 
           await deleteNotification(credentials, notification.receiptId, controller.signal);
+          errorWasShownReference.current = false;
         } catch {
           if (!controller.signal.aborted) {
+            if (!errorWasShownReference.current) {
+              onError?.();
+              errorWasShownReference.current = true;
+            }
+
             await waitForRetry(controller.signal);
           }
         }
@@ -118,5 +130,5 @@ export const usePollingLoop = (): void => {
     void poll();
 
     return () => controller.abort();
-  }, [addChat, addMessage, credentials]);
+  }, [addChat, addMessage, credentials, onError]);
 };

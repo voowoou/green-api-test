@@ -1,4 +1,3 @@
-import { LogoutOutlined } from "@ant-design/icons";
 import { Button, Divider, Flex, List, Typography } from "antd";
 
 import { ChatCard, useChatStore } from "@/entities/chat";
@@ -34,7 +33,9 @@ export const Sidebar = () => {
             {credentials?.idInstance ?? "Нет данных"}
           </Typography.Paragraph>
         </div>
-        <Button aria-label="Выйти" icon={<LogoutOutlined />} onClick={handleLogout} type="text" />
+        <Button onClick={handleLogout} type="text">
+          Выйти
+        </Button>
       </Flex>
 
       <CreateChatForm />
