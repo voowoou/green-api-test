@@ -78,14 +78,14 @@ body {
 
 .chat-card {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
-  min-height: 68px;
+  min-height: 62px;
   margin: 2px 0;
   line-height: 1.25;
   border-radius: 12px;
   cursor: pointer;
-  padding: 10px 12px;
+  padding: 8px 12px;
   transition: background-color 160ms ease;
 }
 
@@ -155,11 +155,15 @@ body {
   color: #748094;
 }
 
+.chat-list .ant-list-item {
+  border-block-end: 0;
+}
+
 .chat-card__avatar {
   flex: none;
   color: #176eb7;
   background: #d8ecff;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
 }
 
@@ -179,17 +183,17 @@ body {
 
 .chat-card__name {
   padding-right: 8px;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .chat-card__time {
   flex: none;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .chat-card__preview {
   display: block;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 * {
