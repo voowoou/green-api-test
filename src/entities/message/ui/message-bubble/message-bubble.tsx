@@ -8,7 +8,7 @@ interface MessageBubbleProps {
 
 export const MessageBubble = ({ message }: MessageBubbleProps) => (
   <article
-    aria-label={message.isOutgoing ? "Исходящее сообщение" : "Входящее сообщение"}
+    aria-label={message.isOutgoing ? "Ваше сообщение" : "Сообщение"}
     style={{
       alignSelf: message.isOutgoing ? "flex-end" : "flex-start",
       backgroundColor: message.isOutgoing ? "#d9f7be" : "#f5f5f5",

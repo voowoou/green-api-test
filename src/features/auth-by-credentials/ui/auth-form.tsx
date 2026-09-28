@@ -12,18 +12,18 @@ export const AuthForm = () => {
   return (
     <Form<AuthCredentials> layout="vertical" onFinish={handleFinish}>
       <Form.Item<AuthCredentials>
-        label="ID инстанса"
+        label="ID"
         name="idInstance"
-        rules={[{ required: true, message: "Введите ID инстанса" }]}
+        rules={[{ required: true, message: "Введите ID" }]}
       >
         <Input autoComplete="username" placeholder="Например, 1101000001" />
       </Form.Item>
       <Form.Item<AuthCredentials>
-        label="API-токен инстанса"
+        label="Токен"
         name="apiTokenInstance"
-        rules={[{ required: true, message: "Введите API-токен" }]}
+        rules={[{ required: true, message: "Введите токен" }]}
       >
-        <Input.Password autoComplete="current-password" placeholder="Ваш API-токен" />
+        <Input.Password autoComplete="current-password" placeholder="Токен API" />
       </Form.Item>
       <Button block htmlType="submit" type="primary">
         Продолжить

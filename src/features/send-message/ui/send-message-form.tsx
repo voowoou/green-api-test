@@ -47,7 +47,7 @@ export const SendMessageForm = () => {
       });
       form.resetFields();
     } catch {
-      antMessage.error("Не удалось отправить сообщение. Проверьте подключение и ключи API.");
+      antMessage.error("Не удалось отправить сообщение");
     } finally {
       setIsSending(false);
     }
@@ -57,12 +57,12 @@ export const SendMessageForm = () => {
     <Form<SendMessageValues> form={form} onFinish={handleFinish}>
       <Form.Item<SendMessageValues>
         name="text"
-        rules={[{ required: true, whitespace: true, message: "Введите текст сообщения" }]}
+        rules={[{ required: true, whitespace: true, message: "Напишите сообщение" }]}
       >
         <Input.TextArea
           autoSize={{ minRows: 1, maxRows: 4 }}
           disabled={!credentials || !activeChatId || isSending}
-          placeholder="Введите сообщение"
+          placeholder="Сообщение"
         />
       </Form.Item>
       <Button

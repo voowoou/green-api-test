@@ -5,7 +5,7 @@ import "../styles/global.css";
 export const App = () => (
   <ConfigProvider>
     <AntdApp>
-      <main>GREEN-API Web Client</main>
+      <main>Чаты</main>
     </AntdApp>
   </ConfigProvider>
 );
