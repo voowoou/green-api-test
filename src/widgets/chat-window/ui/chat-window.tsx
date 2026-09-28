@@ -5,13 +5,15 @@ import { useChatStore } from "@/entities/chat";
 import { MessageBubble, useMessageStore } from "@/entities/message";
 import { SendMessageForm } from "@/features/send-message";
 
+const EMPTY_MESSAGES: readonly [] = [];
+
 export const ChatWindow = () => {
   const activeChatId = useChatStore((state) => state.activeChatId);
   const activeChat = useChatStore((state) =>
     state.chats.find((chat) => chat.chatId === state.activeChatId),
   );
   const messages = useMessageStore((state) =>
-    activeChatId ? (state.messagesByChatId[activeChatId] ?? []) : [],
+    activeChatId ? (state.messagesByChatId[activeChatId] ?? EMPTY_MESSAGES) : EMPTY_MESSAGES,
   );
   const messageCount = messages.length;
   const messagesEndReference = useRef<HTMLDivElement>(null);
