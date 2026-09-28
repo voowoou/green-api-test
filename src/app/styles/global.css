@@ -159,6 +159,10 @@ body {
   border-block-end: 0;
 }
 
+.chat-list .ant-list-item.chat-card {
+  padding-inline: 14px;
+}
+
 .chat-card__avatar {
   flex: none;
   color: #176eb7;
